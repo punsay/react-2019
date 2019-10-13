@@ -2,16 +2,31 @@ import React, { Component } from "react";
 import Radium, { StyleRoot } from "radium";
 import "./App.css";
 import Persons from "../Components/Persons/Persons";
+import Cockpit from "../Components/Cockpit/Cockpit";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log("app.js CONSTRUCTOR");
+  }
   state = {
     persons: [
       { id: "13", name: "AngelPriya", age: "21" },
       { id: "12", name: "Punsay", age: "22" },
       { id: "14", name: "Mona", age: "25" }
     ],
-    showPersons: false
+    showPersons: false,
+    showCockpit: true
   };
+
+  static getDerivedStateFromProps(props, state) {
+    console.log("app.js getDerivedStatefromProps", props);
+    return state;
+  }
+
+  componentDidMount() {
+    console.log("App.js componentDidMount");
+  }
 
   switchNameHandler = () => {
     this.setState({
@@ -23,17 +38,20 @@ class App extends Component {
     });
   };
 
+  /*  componentWillMount = () => {
+    console.log("app.js component will mount");
+  }
+ */
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
-      console.log("id", id);
       return p.id === id;
     });
 
     const person = {
       ...this.state.persons[personIndex]
     };
-
-    console.log("printing the object person : ", person);
+    
+    console.log("person...", person);
 
     person.name = event.target.value;
 
@@ -56,7 +74,6 @@ class App extends Component {
   };
 
   deletePersonsHandler = personIndex => {
-    console.log("delete persons handler");
     /* let persons = this.state.persons.slice(); */
     let persons = [...this.state.persons];
     persons.splice(personIndex, 1);
@@ -64,6 +81,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("app.js render");
     let persons = null;
 
     if (this.state.showPersons) {
@@ -82,8 +100,19 @@ class App extends Component {
       <StyleRoot>
         <div className="App">
           <div>
-            <h1>Hi, I am react App!</h1>
-            <button onClick={this.togglePersonsHandler}>Toggle Persons</button>
+            <button
+              onClick={() => {
+                this.setState({ showCockpit: false });
+              }}
+            >
+              Remove Button
+            </button>
+            {this.state.showCockpit ? (
+              <Cockpit
+                toggle={this.togglePersonsHandler}
+                persons={this.state.persons}
+              />
+            ) : null}
             {persons}
           </div>
         </div>

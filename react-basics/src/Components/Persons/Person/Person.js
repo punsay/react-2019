@@ -1,23 +1,26 @@
-import React from "react";
+import React, {Component} from "react";
 import Radium from "radium";
 import "./Person.css";
-const person = props => {
-  const style = {
-    "@media (min-width:991px)": {
-      width: "500px",
-      boxShadow: "2px #aaa",
-      background: "salmon"
-    }
-  };
-  return (
-    <div className="person">
-      <p onClick={props.click}>
-        I am {props.name} and
-        {props.age} years ! {props.children}
-      </p>
-      <input onChange={props.changed}></input>
-    </div>
-  );
-  /*  I'm a person and I am {Math.floor(Math.random()*30)} years old! */
+class Person extends Component {
+  render () {
+    /* const style = {
+      "@media (min-width:991px)": {
+        width: "500px",
+        boxShadow: "2px #aaa",
+        background: "salmon"
+      }
+    }; */
+    console.log("person.js rendering...");
+    return (
+      <div className="person">
+        <p onClick={this.props.click}>
+          I am {this.props.name} and
+          {this.props.age} years ! {this.props.children}
+        </p>
+        <input onChange={this.props.changed}></input>
+      </div>
+    );
+    /*  I'm a person and I am {Math.floor(Math.random()*30)} years old! */
+  }
 };
-export default Radium(person);
+export default Radium(Person);
