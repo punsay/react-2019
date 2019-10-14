@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import Radium from "radium";
+import Aux from "../../../hoc/Aux"
 import "./Person.css";
 class Person extends Component {
   render () {
@@ -12,13 +13,13 @@ class Person extends Component {
     }; */
     console.log("person.js rendering...");
     return (
-      <div className="person">
+      <Aux>
         <p onClick={this.props.click}>
           I am {this.props.name} and
           {this.props.age} years ! {this.props.children}
         </p>
         <input onChange={this.props.changed}></input>
-      </div>
+      </Aux>
     );
     /*  I'm a person and I am {Math.floor(Math.random()*30)} years old! */
   }

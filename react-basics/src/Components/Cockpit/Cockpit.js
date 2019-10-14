@@ -6,7 +6,7 @@ const cockpit = props => {
     return () => {
       console.log('[Cockpit.js] cleanUpwork in UseEffect');
     }
-  },props.persons);
+  });
   return (
     <div>
       <h1>Hi, I am react App!</h1>

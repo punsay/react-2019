@@ -16,7 +16,8 @@ class App extends Component {
       { id: "14", name: "Mona", age: "25" }
     ],
     showPersons: false,
-    showCockpit: true
+    showCockpit: true,
+    changeCounter:0
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -50,7 +51,7 @@ class App extends Component {
     const person = {
       ...this.state.persons[personIndex]
     };
-    
+
     console.log("person...", person);
 
     person.name = event.target.value;
@@ -62,7 +63,8 @@ class App extends Component {
 
     (person.name = event.target.value),
       this.setState({
-        persons
+        persons:person,
+        changeCounter:this.state.changeCounter+1
       });
   };
 
@@ -85,6 +87,7 @@ class App extends Component {
     let persons = null;
 
     if (this.state.showPersons) {
+      console.log("^^^^^^",this.state.persons);
       persons = (
         <div>
           <Persons

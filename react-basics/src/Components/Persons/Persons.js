@@ -8,7 +8,7 @@ class Persons extends Component {
   }
   shouldComponentUpdate(nextProps, nextState) {
     console.log("[Person.js] shouldComponentUpdate");
-    if (nextProps.persons !== this.props.persons){
+    if (nextProps.persons != this.props.persons){
       return true;
     }
     else{
@@ -26,7 +26,7 @@ class Persons extends Component {
   }
 
   render() {
-    console.log("persons.js rendering..");
+    console.log("persons.js rendering..898989",this.props.persons);
     return this.props.persons.map((person, index) => {
       return (
         <Person
